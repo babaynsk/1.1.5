@@ -1,6 +1,5 @@
 package jm.task.core.jdbc.dao;
 
-import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
@@ -20,9 +19,7 @@ public class UserDaoJDBCImpl  implements UserDao {
     public void createUsersTable() throws SQLException {
         try (Connection connect = Util.getConnection();
              Statement statement = connect.createStatement()) {
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), age INT)");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), age INTEGER)");
         }
     }
 
@@ -31,8 +28,7 @@ public class UserDaoJDBCImpl  implements UserDao {
         try (Connection connect = Util.getConnection();
              Statement statement = connect.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
-        } catch (SQLException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -44,8 +40,6 @@ public class UserDaoJDBCImpl  implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -54,8 +48,6 @@ public class UserDaoJDBCImpl  implements UserDao {
              PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM users WHERE id = ?")) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -73,20 +65,15 @@ public class UserDaoJDBCImpl  implements UserDao {
                 user.setAge(resultSet.getByte("age"));
                 usersList.add(user);
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return usersList;
     }
 
 
-    public void cleanUsersTable() throws SQLException {
+    public void cleanUsersTable () throws SQLException {
         try (Connection connect = Util.getConnection();
              Statement statement = connect.createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE users");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

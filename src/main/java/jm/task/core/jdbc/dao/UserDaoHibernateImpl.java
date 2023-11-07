@@ -21,14 +21,15 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.beginTransaction();
                 session.createSQLQuery(
                         "CREATE TABLE IF NOT EXISTS users " +
-                                "(id BIGINT PRIMARY KEY AUTO_INCREMENT, " +
+                                "(id INTEGER PRIMARY KEY AUTO_INCREMENT, " +
                                 "firstname VARCHAR(255), " +
                                 "lastName VARCHAR(255), " +
-                                "age TINYINT)"
+                                "age INTEGER)"
                 ).executeUpdate();
                 session.getTransaction().commit();
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
         }
     }
@@ -42,6 +43,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
         }
     }
@@ -56,6 +58,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
         }
     }
@@ -70,6 +73,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
         }
     }
@@ -86,6 +90,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
         }
         return allUsers;
@@ -100,6 +105,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 session.getTransaction().rollback();
+                e.printStackTrace();
             }
 
         }

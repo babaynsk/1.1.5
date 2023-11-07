@@ -62,7 +62,7 @@ public class Util {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Connection is work");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+           e.printStackTrace();
         }
         return connection;
 
